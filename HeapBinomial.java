@@ -203,30 +203,6 @@ public class HeapBinomial {
         return claveCambiada;
     }
 
-    /*
-    
-    public void disminuirClave(int clave, int nueva) {
-        NodoBinomial nodo = null;
-        boolean encontrado = false;
-        ArbolBinomial actual = null;
-        boolean eliminado = false;
-        int pos = 0, arbol = 0;
-        // Primero buscamos el nodo
-        while (pos < this.raices.size()) {
-            actual = this.raices.get(pos);
-            nodo = actual.buscarNodo(clave);
-            if (nodo != null) {
-                arbol = pos;
-                break;
-            }
-            pos++;
-        }
-        if (nodo != null) {
-            nodo.setClave(nueva);
-            this.raices.get(arbol).ordenar(nodo);
-        }
-    }
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("HeapBinomial:\n");
