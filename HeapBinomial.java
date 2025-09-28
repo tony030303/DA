@@ -143,39 +143,6 @@ public class HeapBinomial {
         return min;
     }
 
-    public boolean eliminar(int clave) {
-        //método que elimina un nodo (si la clave existe) del heap.
-        NodoBinomial nodo = null;
-        boolean eliminado = false;
-        boolean paso1Exito = false;
-        ArbolBinomial actual = null;
-        int pos = 0;
-        int posArbol = -1;
-
-        //Paso 1: Buscar el nodo.
-        while (!paso1Exito && pos < this.raices.size()) {
-            actual = this.raices.get(pos); //obtengo el arbol que voy a explorar para averiguar la clave.
-            nodo = actual.buscarNodo(clave);
-            if (nodo != null) { //lo encuentro, guardo su posición para después eliminarlo
-                posArbol = pos;
-                paso1Exito = true;
-            }
-            pos++;
-        }
-
-        //Paso 2: convertir ese nodo al minimo valor posible y luego extraerlo.
-        if (nodo != null) {
-            nodo.setClave(Integer.MIN_VALUE);
-            //ordeno el arbol para que quede por encima
-            actual.ordenarArbol(nodo);
-            //acá podemos invocar a extraerMin 
-            this.extraerMin();
-            eliminado = true;
-        }
-
-        return eliminado;
-    }
-
     public boolean disminuirClave(int viejaC, int nuevaC) {
         //Método que disminuye la clave de un nodo del heap
         NodoBinomial nodo = null;
@@ -201,6 +168,18 @@ public class HeapBinomial {
             claveCambiada = true;
         }
         return claveCambiada;
+    }
+
+    public boolean eliminar(int clave) {
+        //Método que elimina un nodo cualquiera que pertenezca al heap.
+        // Primero, disminuyo la clave hasta el minimo valor posible.
+        boolean claveOk = this.disminuirClave(clave, Integer.MIN_VALUE);
+        if (claveOk) {
+            // Luego, extraigo el mínimo (que ahora es ese nodo al setearlo con el min valor posible)
+            this.extraerMin();
+        }
+
+        return claveOk;
     }
 
     @Override

@@ -67,6 +67,8 @@ public class ArbolBinomial {
         return buscarNodoAux(this.raiz, clave);
     }
 
+    //Versión anterior que provocaba O(n) en la búsqueda
+    /*
     private NodoBinomial buscarNodoAux(NodoBinomial actual, int clave) {
         NodoBinomial hijo, nodo = null;
         //en caso de que no lo encontremos, buscamos por sus hijos
@@ -86,6 +88,30 @@ public class ArbolBinomial {
         }
 
         return nodo;
+    }
+     */
+    //en esta segunda versión, como hay poda de ramas, se puede estimar un O(log n)
+    private NodoBinomial buscarNodoAux(NodoBinomial actual, int clave) {
+        NodoBinomial retorno = null;
+        if (actual != null && actual.getClave() <= clave) {
+            //si no se sobrepasa y estamos buscando nodos menores o iguales a esa clave, seguimos por ahi
+
+            if (actual.getClave() == clave) {
+                //Si logramos encontrar la clave exacta, guardo nodo a retornar
+                retorno = actual;
+            } else {
+                //sino, busco por sus hijos
+                NodoBinomial resultado = buscarNodoAux(actual.getHijo(), clave);
+                if (resultado != null) {
+                    //si lo encontramos, lo guardo para retornar
+                    retorno = resultado;
+                } else { //Sino, busco en los hermanos
+                    retorno = buscarNodoAux(actual.getHermano(), clave);
+                }
+            }
+
+        }
+        return retorno;
     }
 
     public void ordenarArbol(NodoBinomial nodo) {

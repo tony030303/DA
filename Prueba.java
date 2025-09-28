@@ -62,19 +62,10 @@ public class Prueba {
         heap.insertar(6666);
 
         System.out.println(heap.toString());
-        boolean valor = heap.disminuirClave(22, 21);
+        boolean valor = heap.eliminar(22);
         System.out.println("cambiado?:" + valor + "\n");
         System.out.println(heap.toString());
 
-        //        // Eliminamos la raíz mínima (clave = 1)
-        //        System.out.println("\nEliminamos el nodo con clave = 1");
-        //        heap.eliminar(1);
-        //        System.out.println(heap.toString());
-        //
-        //        // Eliminamos otro valor que no existe
-        //        System.out.println("\nIntentamos eliminar el nodo con clave = 99");
-        //        heap.eliminar(99);
-        //        System.out.println(heap.toString());
     }
 
 }
