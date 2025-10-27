@@ -97,7 +97,7 @@ public class ArbolBinomial {
             //si no se sobrepasa y estamos buscando nodos menores o iguales a esa clave, seguimos por ahi
 
             if (actual.getClave() == clave) {
-                //Si logramos encontrar la clave exacta, guardo nodo a retornar
+                //Si logramos encontrar la clave exacta, guardo nodo a retornar.
                 retorno = actual;
             } else {
                 //sino, busco por sus hijos
